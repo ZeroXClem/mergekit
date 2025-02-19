@@ -1,0 +1,40 @@
+out_dtype: bfloat16
+dtype: float32
+tokenizer_source: base
+merge_method: della_linear
+parameters:
+  int8_mask: true
+  density: 0.5
+  epsilon: 0.04
+  lambda: 1.05
+base_model: nbeerbower/Llama3.1-Allades-8B
+models:
+  - model: nbeerbower/Llama3.1-Allades-8B
+    parameters:
+      weight:
+        - filter: v_proj
+          value: [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1]
+        - filter: o_proj
+          value: [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1]
+        - filter: up_proj
+          value: [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1]
+        - filter: gate_proj
+          value: [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1]
+        - filter: down_proj
+          value: [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1]
+        - value: 1
+  - model: mergekit-community/L3.1-Pneuma-8B-v1
+    parameters:
+      weight:
+        - filter: v_proj
+          value: [0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0]
+        - filter: o_proj
+          value: [0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0]
+        - filter: up_proj
+          value: [0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0]
+        - filter: gate_proj
+          value: [0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0]
+        - filter: down_proj
+          value: [0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0]
+        - value: 0
+

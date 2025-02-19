@@ -1,0 +1,23 @@
+models:
+  - model: Casual-Autopsy/L3-Super-Nova-RP-8B
+    parameters:
+      density: 0.5
+      weight: 0.27
+  - model: TheDrummer/Llama-3SOME-8B-v2
+    parameters:
+      density: 0.6
+      weight: 0.23
+  - model: djuna/L3.1-Noraian
+    parameters:
+      density: 0.4
+      weight: 0.28
+merge_method: della
+base_model: kromeurus/L3.1-Aglow-Vulca-v0.1-8B
+parameters:
+  epsilon: 0.1
+  lambda: 1.0
+  normalize: false
+  int8_mask: true
+dtype: float32
+out_dtype: bfloat16
+
